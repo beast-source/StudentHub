@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>StudentHub | Student Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+    <!-- ==========================================
+         SIDEBAR
+    =========================================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                S
+            </div>
+
+            <span>StudentHub</span>
+
+        </div>
+
+
+        <nav>
+
+            <a href="#" class="nav-item active">
+
+                <span>⌂</span>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="#students" class="nav-item">
+
+                <span>◉</span>
+
+                Students
+
+            </a>
+
+
+            <a href="#analytics" class="nav-item">
+
+                <span>▥</span>
+
+                Analytics
+
+            </a>
+
+
+            <a href="#about" class="nav-item">
+
+                <span>ⓘ</span>
+
+                About
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="admin-card">
+
+                <div class="avatar">
+                    SJ
+                </div>
+
+                <div>
+
+                    <strong>Administrator</strong>
+
+                    <small>Student Portal</small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ==========================================
+         MAIN CONTENT
+    =========================================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOP NAVBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h2>Dashboard</h2>
+
+                <p>Student Management System</p>
+
+            </div>
+
+
+            <button
+                class="add-button"
+                onclick="openAddModal()"
+            >
+
+                <span>+</span>
+
+                Add Student
+
+            </button>
+
+        </header>
+
+
+        <!-- ==========================================
+             WELCOME SECTION
+        =========================================== -->
+
+        <section class="welcome">
+
+            <div>
+
+                <span class="welcome-label">
+                    STUDENT MANAGEMENT
+                </span>
+
+                <h1>
+                    Welcome back 👋
+                </h1>
+
+                <p>
+                    Manage your students, courses and records
+                    from one place.
+                </p>
+
+            </div>
+
+
+            <div class="welcome-icon">
+
+                🎓
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================================
+             STATISTICS
+        =========================================== -->
+
+        <section class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon students-icon">
+                    👥
+                </div>
+
+                <div>
+
+                    <span>Total Students</span>
+
+                    <h2 id="totalStudents">
+                        0
+                    </h2>
+
+                    <small>
+                        Registered students
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon course-icon">
+                    📚
+                </div>
+
+                <div>
+
+                    <span>Total Courses</span>
+
+                    <h2 id="totalCourses">
+                        0
+                    </h2>
+
+                    <small>
+                        Active courses
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon active-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <span>System Status</span>
+
+                    <h2 class="status-text">
+                        Active
+                    </h2>
+
+                    <small>
+                        Database connected
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon records-icon">
+                    ↗
+                </div>
+
+                <div>
+
+                    <span>Total Records</span>
+
+                    <h2 id="totalRecords">
+                        0
+                    </h2>
+
+                    <small>
+                        Stored in database
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================================
+             STUDENT SECTION
+        =========================================== -->
+
+        <section
+            class="content-card"
+            id="students"
+        >
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        Student Directory
+                    </h2>
+
+                    <p>
+                        View and manage all registered students
+                    </p>
+
+                </div>
+
+
+                <div class="search-box">
+
+                    <span>⌕</span>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search students..."
+                        onkeyup="searchStudents()"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>STUDENT</th>
+
+                            <th>EMAIL</th>
+
+                            <th>COURSE</th>
+
+                            <th>ACTIONS</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="studentTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================================
+             ABOUT SECTION
+        =========================================== -->
+
+        <section
+            class="about-section"
+            id="about"
+        >
+
+            <div>
+
+                <span class="welcome-label">
+                    ABOUT THE SYSTEM
+                </span>
+
+                <h2>
+                    Simple. Powerful. Organized.
+                </h2>
+
+                <p>
+                    StudentHub is a full-stack student management
+                    application built using HTML, CSS, JavaScript,
+                    Node.js, Express and MySQL.
+                </p>
+
+            </div>
+
+
+            <div class="technology-list">
+
+                <span>HTML</span>
+
+                <span>CSS</span>
+
+                <span>JavaScript</span>
+
+                <span>Node.js</span>
+
+                <span>Express</span>
+
+                <span>MySQL</span>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer>
+
+            <p>
+                StudentHub © 2026
+            </p>
+
+            <p>
+                Built with Node.js + Express + MySQL
+            </p>
+
+        </footer>
+
+
+    </main>
+
+
+    <!-- ==========================================
+         ADD / EDIT MODAL
+    =========================================== -->
+
+    <div
+        class="modal-overlay"
+        id="studentModal"
+    >
+
+        <div class="modal">
+
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="welcome-label">
+                        STUDENT RECORD
+                    </span>
+
+                    <h2 id="formTitle">
+                        Add New Student
+                    </h2>
+
+                </div>
+
+
+                <button
+                    class="close-button"
+                    onclick="closeModal()"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="studentForm">
+
+                <input
+                    type="hidden"
+                    id="studentId"
+                >
+
+
+                <label>
+                    Student Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter student name"
+                    required
+                >
+
+
+                <label>
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="student@example.com"
+                    required
+                >
+
+
+                <label>
+                    Course
+                </label>
+
+                <input
+                    type="text"
+                    id="course"
+                    placeholder="e.g. BCA"
+                    required
+                >
+
+
+                <div class="modal-buttons">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        onclick="closeModal()"
+                    >
+                        Cancel
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                        id="submitButton"
+                    >
+                        Add Student
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
